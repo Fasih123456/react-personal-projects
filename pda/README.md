@@ -1,6 +1,8 @@
-#Project 1
+#Project 2
 
-This is my first react project which only display some simple text on the browser.
+This project expands on project 1 by using child compoenents inside of parent compoenents. Third party applications are also used to enhance the overall look and debugging of the appliction.
+
+This project aims to create a card for 3 personal digital assitance which can be displayed properly.
 
 Feature Which are used in this project which were not used prviously:
 
