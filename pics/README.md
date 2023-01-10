@@ -1,6 +1,7 @@
 #Project 4
 
 This project allows the user to enter a search term for which they will recieve 10 different images.
+
 Feature Which are used in this project which were not used prviously:
 
 1. Passing data from Child to parent
