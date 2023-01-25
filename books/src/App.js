@@ -5,7 +5,8 @@ import Col from "react-bootstrap/Col";
 import BookList from "./Components/BookList";
 import BookCreate from "./Components/BookCreate";
 import BookEdit from "./Components/BookEdit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 /**
  * Gets random number between 1000 and 10000
@@ -22,28 +23,31 @@ function App() {
    * @param  {string} title The title of the new book being created
    */
   const createBook = (title) => {
-    const updateBooks = [
-      {
-        id: getRandomNumber(),
-        title,
-      },
-      ...books,
-    ];
-
-    setBooks(updateBooks);
-    console.log(books);
+    axios.post("http://localhost:3001/books", {
+      title,
+    });
   };
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/books").then((res) => {
+      setBooks(res.data);
+    });
+  });
 
   /**
    *  Removed a book from the books array by matching the Id's
    * @param  {number} id The Id of the book which should be removed
    */
-  const removeBookByID = (id) => {
+  /*const removeBookByID = (id) => {
     const updatedBooks = books.filter((book) => {
       return id !== book.id;
     });
 
     setBooks(updatedBooks);
+  };*/
+
+  const removeBookByID = (id) => {
+    axios.delete(`http://localhost:3001/books/${id}`, {});
   };
 
   /**
@@ -53,13 +57,9 @@ function App() {
    */
 
   const editBookById = (id, title) => {
-    const updateBooks = books.map((book) => {
-      if (book.id == id) return { ...book, title };
-
-      return book;
+    axios.put(`http://localhost:3001/books/${id}`, {
+      title,
     });
-
-    setBooks(updateBooks);
   };
 
   return (
